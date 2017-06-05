@@ -22,6 +22,6 @@ object Main {
 
   def main(args : Array[String]) : Unit = {
     displayStringXTimes("Hi", 3)
-    displayStringXTimesRectangle("H", 4)
+    displayStringXTimesFormatted("H", 4)
   }
 }
