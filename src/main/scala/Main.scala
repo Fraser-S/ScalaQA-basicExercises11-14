@@ -9,7 +9,19 @@ object Main {
     }
   }
 
+  def displayStringXTimesFormatted(text : String, timesToLoop : Int) : Unit= {
+    for(i<-1 to timesToLoop){
+      for(i<-1 to timesToLoop)
+      {
+       print(f"$text ")
+      }
+
+      print("\n")
+    }
+  }
+
   def main(args : Array[String]) : Unit = {
     displayStringXTimes("Hi", 3)
+    displayStringXTimesRectangle("H", 4)
   }
 }
