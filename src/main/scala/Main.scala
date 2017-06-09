@@ -73,8 +73,6 @@ object Main {
   def displayStringsXTimesWithGuardsRecursive(text1 : String, text2 : String, timesToLoop : Int, loopCounter: Int) : Unit = {
     if(timesToLoop >= loopCounter)
     {
-
-
       //if i is divisible by 3 and 5 display both strings
       if(loopCounter % 3 == 0 && loopCounter % 5 == 0)
       {
@@ -82,7 +80,6 @@ object Main {
         //if i is divisible by three display first string
       } else if(loopCounter % 3 == 0)
       {
-
         print(text1)
         //else if i is divisible by three display first string
       } else if(loopCounter % 5 == 0)
@@ -104,6 +101,32 @@ object Main {
     }
   }
 
+
+  def displayStringXTimesFunctional(text: String, timesToLoop: Int): Unit ={
+    def displayIter(index: Int, text: String, timesToLoop: Int): Unit ={
+      if(timesToLoop != index) {println(text);displayIter(index+1,text,timesToLoop)}
+    }
+    displayIter(0,text,timesToLoop)
+  }
+
+  def displayStringXTimesFormattedFunctional(text: String, timesToLoop: Int): Unit ={
+    def displayIter(index: Int, text: String, timesToLoop : Int): Unit ={
+      if(timesToLoop != index) {for(j<-0 to timesToLoop)print(text);println();displayIter(index+1,text,timesToLoop)}
+    }
+    displayIter(0,text,timesToLoop)
+  }
+
+  def displayStringsXTimesWithGuardsFunctional(text1 : String, text2 : String, timesToLoop : Int) : Unit = {
+    def displayIter(index : Int, text1:String, text2:String, timesToLoop: Int) : Unit = index match{
+      case a if index > timesToLoop => print("\n")
+      case b if index % 3 == 0 && index % 5 == 0 => print(text1+text2);displayIter(index+1,text1,text2,timesToLoop)
+      case c if index % 3 == 0 => print(text1+",");displayIter(index+1,text1,text2,timesToLoop)
+      case d if index % 5 == 0 => print(text2+",");displayIter(index+1,text1,text2,timesToLoop)
+      case _ => print(index+",");displayIter(index+1,text1,text2,timesToLoop)
+    }
+    displayIter(1,text1,text2,timesToLoop)
+  }
+
   def main(args: Array[String]): Unit = {
     //standard
     println("Non-Recursive Loops")
@@ -116,5 +139,12 @@ object Main {
     displayStringXTimesRecursive("Hi", 3, 1)
     displayStringXTimesFormattedRecursive("H", 4, 1)
     displayStringsXTimesWithGuardsRecursive("Fizz", "Buzz", 15, 1)
+
+    //functional version
+    println("\nFunctional Loops")
+    displayStringXTimesFunctional("Hi",3)
+    displayStringXTimesFormattedFunctional("H",4)
+    displayStringsXTimesWithGuardsFunctional("Fizz", "Buzz", 15)
+
   }
 }
